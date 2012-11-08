@@ -5,9 +5,9 @@
 ## Examples
 ### Creating a Pusher Event Listener
 	PusherListener eventListener = new PusherListener() {  
+
 		Channel channel;
 		
-		@Override
 		public void onConnect(String socketId) {
 			System.out.println("Pusher connected. Socket Id is: " + socketId);
 			channel = pusher.subscribe(PUSHER_CHANNEL);
@@ -15,19 +15,16 @@
 			channel.send("client-test", new JSONObject());
 			
 			channel.bind("price-updated", new ChannelListener() {
-				@Override
 				public void onMessage(String message) {
 					System.out.println("Received bound channel message: " + message);
 				}
 			});
 		}
 	
-		@Override
 		public void onMessage(String message) {
 			System.out.println("Received message from Pusher: " + message);
 		}
 	
-		@Override
 		public void onDisconnect() {
 			System.out.println("Pusher disconnected.");
 		}
@@ -49,7 +46,6 @@
 	channel.send("trigger-event", new JSONObject()); 
 ### Binding to Channel Events
 	channel.bind("price-updated", new ChannelListener() {  
-		@Override  
 		public void onMessage(String message) {  
 			System.out.println("Received bound channel message: " + message);  
 		}  
